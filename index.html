@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eat's on Tap Presentation - Full</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* GLOBAL STYLES & SCALING LOGIC */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background outside the presentation */
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        #presentation-area {
+            width: 1280px;
+            height: 720px;
+            position: relative;
+            transform-origin: center center;
+            background-color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            z-index: 10;
+        }
+
+        /* --- SLIDE 1 STYLES --- */
+        #slide-1 .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 24px; background-color: #1a3a5c; }
+        #slide-1 .content-wrapper { flex: 1; padding: 60px 80px 60px 104px; display: flex; flex-direction: column; justify-content: center; }
+        #slide-1 h1 { font-family: 'Poppins', sans-serif; color: #1a3a5c; line-height: 1.2; }
+        #slide-1 .meta-info { border-left: 4px solid #e5e7eb; padding-left: 20px; }
+
+        /* --- SLIDE 2 STYLES --- */
+        #slide-2 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; }
+        #slide-2 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-2 .content-area { flex: 1; padding: 60px; display: flex; gap: 60px; }
+        #slide-2 .left-col { flex: 1.4; display: flex; flex-direction: column; justify-content: center; }
+        #slide-2 .right-col { flex: 0.8; display: flex; flex-direction: column; justify-content: center; }
+        #slide-2 .bullet-item { display: flex; align-items: flex-start; margin-bottom: 28px; }
+        #slide-2 .bullet-icon { color: #1a3a5c; font-size: 24px; margin-right: 20px; margin-top: 4px; }
+        #slide-2 .bullet-text { color: #333333; font-size: 24px; line-height: 1.5; }
+        #slide-2 .callout-box { background-color: #f0f4f8; border-left: 8px solid #1a3a5c; padding: 40px; border-radius: 4px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); }
+        #slide-2 .callout-text { color: #1a3a5c; font-size: 26px; font-weight: 600; line-height: 1.4; margin-bottom: 20px; font-family: 'Poppins', sans-serif; }
+        #slide-2 .callout-sub { color: #555555; font-size: 20px; line-height: 1.4; }
+        #slide-2 .stat-highlight { font-weight: 700; color: #d9534f; }
+
+        /* --- SLIDE 3 STYLES --- */
+        #slide-3 { background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f3f4f6" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); }
+        #slide-3 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; flex-shrink: 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        #slide-3 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-3 .content-area { flex: 1; padding: 40px 60px; display: flex; flex-direction: column; justify-content: center; }
+        #slide-3 .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; height: 100%; }
+        #slide-3 .problem-card { background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 24px; display: flex; align-items: flex-start; transition: transform 0.2s ease; border: 1px solid #f3f4f6; }
+        #slide-3 .problem-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        #slide-3 .accent-red { border-left: 6px solid #d9534f; }
+        #slide-3 .accent-navy { border-left: 6px solid #1a3a5c; }
+        #slide-3 .icon-circle { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 20px; }
+        #slide-3 .bg-red-light { background-color: #fcebea; color: #d9534f; }
+        #slide-3 .bg-navy-light { background-color: #e8eaf0; color: #1a3a5c; }
+        #slide-3 .card-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 20px; color: #1f2937; margin-bottom: 6px; }
+        #slide-3 .card-text { font-family: 'Inter', sans-serif; font-size: 16px; color: #4b5563; line-height: 1.5; }
+        #slide-3 .card-full { grid-column: span 2; }
+
+        /* --- SLIDE 4 STYLES --- */
+        #slide-4 { background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f3f4f6" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); }
+        #slide-4 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; flex-shrink: 0; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); }
+        #slide-4 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-4 .content-area { flex: 1; padding: 40px 60px; display: flex; flex-direction: column; justify-content: center; }
+        #slide-4 .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; height: 100%; }
+        #slide-4 .objective-card { background-color: white; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1); padding: 20px 24px; display: flex; align-items: flex-start; transition: transform 0.2s ease; border: 1px solid #f3f4f6; border-left: 6px solid #1a3a5c; }
+        #slide-4 .objective-card:hover { transform: translateY(-2px); box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        #slide-4 .icon-circle { width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 20px; background-color: #e8eaf0; color: #1a3a5c; }
+        #slide-4 .card-title { font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 19px; color: #1f2937; margin-bottom: 4px; }
+        #slide-4 .card-text { font-family: 'Inter', sans-serif; font-size: 15px; color: #4b5563; line-height: 1.45; }
+        #slide-4 .card-full { grid-column: span 2; }
+
+        /* --- SLIDE 5 STYLES --- */
+        #slide-5 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; }
+        #slide-5 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-5 .content-area { flex: 1; padding: 50px 60px; display: flex; gap: 50px; align-items: flex-start; }
+        #slide-5 .left-col { flex: 1.3; display: flex; flex-direction: column; gap: 18px; }
+        #slide-5 .right-col { flex: 0.9; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+        #slide-5 .framework-card { background-color: #f8fafc; border-left: 6px solid #1a3a5c; padding: 16px 20px; border-radius: 0 8px 8px 0; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); display: flex; align-items: flex-start; transition: transform 0.2s ease; }
+        #slide-5 .framework-icon { color: #1a3a5c; font-size: 24px; margin-right: 16px; margin-top: 4px; width: 30px; text-align: center; }
+        #slide-5 .framework-content { flex: 1; }
+        #slide-5 .framework-title { color: #1a3a5c; font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 20px; margin-bottom: 4px; display: block; }
+        #slide-5 .framework-desc { color: #4b5563; font-size: 16px; line-height: 1.4; margin: 0; }
+        #slide-5 .callout-box { background-color: #f0f4f8; border-top: 8px solid #1a3a5c; padding: 40px 30px; border-radius: 8px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); position: relative; }
+        #slide-5 .callout-title { color: #1a3a5c; font-size: 24px; font-weight: 700; font-family: 'Poppins', sans-serif; margin-bottom: 20px; border-bottom: 2px solid #e5e7eb; padding-bottom: 10px; }
+        #slide-5 .callout-text { color: #333333; font-size: 20px; line-height: 1.6; font-family: 'Inter', sans-serif; }
+        #slide-5 .highlight { color: #1a3a5c; font-weight: 700; }
+
+        /* --- SLIDE 6 STYLES --- */
+        #slide-6 .header-bar { background-color: #1a3a5c; height: 80px; display: flex; align-items: center; padding-left: 60px; }
+        #slide-6 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 600; letter-spacing: 0.5px; }
+        #slide-6 .content-area { flex: 1; padding: 40px 60px; display: flex; flex-direction: column; justify-content: center; }
+        #slide-6 .process-container { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 60px; position: relative; }
+        #slide-6 .process-line { position: absolute; top: 40px; left: 100px; right: 100px; height: 4px; background-color: #e2e8f0; z-index: 0; }
+        #slide-6 .step-card { background-color: #ffffff; width: 260px; position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        #slide-6 .step-icon-wrapper { width: 80px; height: 80px; background-color: #ffffff; border: 4px solid #1a3a5c; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        #slide-6 .step-icon { font-size: 32px; color: #1a3a5c; }
+        #slide-6 .step-number { font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 5px; letter-spacing: 1px; }
+        #slide-6 .step-title { font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 700; color: #1a3a5c; margin-bottom: 12px; }
+        #slide-6 .step-desc { font-size: 15px; line-height: 1.5; color: #475569; }
+        #slide-6 .info-section { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: auto; }
+        #slide-6 .info-box { background-color: #f8fafc; border-left: 5px solid #1a3a5c; padding: 20px 30px; border-radius: 4px; }
+        #slide-6 .info-title { font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 600; color: #1a3a5c; margin-bottom: 8px; display: block; }
+        #slide-6 .info-text { font-size: 15px; color: #334155; margin: 0; }
+
+        /* --- SLIDE 7 STYLES --- */
+        #slide-7 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; }
+        #slide-7 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-7 .content-area { flex: 1; padding: 50px 60px; display: flex; gap: 50px; }
+        #slide-7 .left-col { flex: 1.3; display: flex; flex-direction: column; justify-content: center; gap: 20px; }
+        #slide-7 .right-col { flex: 0.9; display: flex; flex-direction: column; justify-content: center; }
+        #slide-7 .feature-card { display: flex; align-items: flex-start; padding: 15px; border-radius: 8px; background-color: #f8fafc; border-left: 5px solid #1a3a5c; }
+        #slide-7 .feature-icon { color: #1a3a5c; font-size: 20px; margin-right: 15px; margin-top: 3px; width: 24px; text-align: center; }
+        #slide-7 .feature-content { flex: 1; }
+        #slide-7 .feature-title { font-family: 'Poppins', sans-serif; font-weight: 600; color: #1a3a5c; font-size: 18px; margin-bottom: 4px; }
+        #slide-7 .feature-desc { color: #4b5563; font-size: 15px; line-height: 1.4; }
+        #slide-7 .architecture-box { background-color: #f0f4f8; border: 2px solid #e2e8f0; border-radius: 12px; padding: 30px; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05); position: relative; }
+        #slide-7 .arch-title { color: #1a3a5c; font-family: 'Poppins', sans-serif; font-size: 22px; font-weight: 600; margin-bottom: 25px; text-align: center; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; }
+        #slide-7 .flow-step { display: flex; align-items: center; margin-bottom: 15px; position: relative; }
+        #slide-7 .step-number { background-color: #1a3a5c; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-right: 15px; z-index: 2; }
+        #slide-7 .step-text { font-size: 16px; color: #334155; font-weight: 500; }
+        #slide-7 .flow-line { position: absolute; left: 14px; top: 28px; bottom: -15px; width: 2px; background-color: #cbd5e1; z-index: 1; }
+        #slide-7 .flow-step:last-child .flow-line { display: none; }
+
+        /* --- SLIDE 8 STYLES --- */
+        #slide-8 .header-bar { background-color: #1a3a5c; height: 80px; display: flex; align-items: center; padding-left: 60px; flex-shrink: 0; }
+        #slide-8 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 36px; font-weight: 600; letter-spacing: 0.5px; }
+        #slide-8 .content-area { flex: 1; padding: 40px 60px; display: flex; gap: 40px; overflow: hidden; }
+        #slide-8 .chart-container { flex: 1.8; background-color: #ffffff; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); border: 1px solid #e2e8f0; display: flex; flex-direction: column; justify-content: center; }
+        #slide-8 .metrics-container { flex: 1; display: flex; flex-direction: column; gap: 20px; justify-content: center; }
+        #slide-8 .metric-card { background-color: #f8fafc; border-left: 6px solid #1a3a5c; padding: 20px; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); display: flex; flex-direction: column; justify-content: center; }
+        #slide-8 .metric-value { font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; color: #1a3a5c; line-height: 1; margin-bottom: 5px; }
+        #slide-8 .metric-label { font-size: 14px; color: #64748b; font-weight: 500; line-height: 1.4; }
+        #slide-8 .metric-icon { float: right; color: #e2e8f0; font-size: 24px; }
+        #slide-8 .footer-note { margin-top: auto; border-top: 1px solid #e2e8f0; padding-top: 15px; font-size: 14px; color: #64748b; text-align: center; font-style: italic; }
+        #slide-8 .card-1 { border-left-color: #1a3a5c; } #slide-8 .card-2 { border-left-color: #2c5282; } #slide-8 .card-3 { border-left-color: #3182ce; } #slide-8 .card-4 { border-left-color: #63b3ed; }
+        #slide-8 .value-1 { color: #1a3a5c; } #slide-8 .value-2 { color: #2c5282; } #slide-8 .value-3 { color: #3182ce; } #slide-8 .value-4 { color: #4299e1; }
+
+        /* --- SLIDE 9 STYLES --- */
+        #slide-9 .header-bar { background-color: #1a3a5c; height: 100px; display: flex; align-items: center; padding: 0 60px; flex-shrink: 0; }
+        #slide-9 .header-title { color: #ffffff; font-family: 'Poppins', sans-serif; font-size: 42px; font-weight: 600; }
+        #slide-9 .content-area { flex: 1; padding: 50px 60px; display: flex; gap: 50px; overflow: hidden; }
+        #slide-9 .left-col { flex: 1.5; display: flex; flex-direction: column; justify-content: space-between; }
+        #slide-9 .right-col { flex: 0.9; display: flex; flex-direction: column; justify-content: center; }
+        #slide-9 .bullet-card { display: flex; align-items: flex-start; background-color: #f8fafc; border-left: 5px solid #1a3a5c; padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 16px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03); transition: transform 0.2s ease; }
+        #slide-9 .bullet-card:last-child { margin-bottom: 0; }
+        #slide-9 .bullet-icon-wrapper { background-color: #e6eef5; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-right: 20px; }
+        #slide-9 .bullet-icon { color: #1a3a5c; font-size: 20px; }
+        #slide-9 .bullet-content { display: flex; flex-direction: column; }
+        #slide-9 .bullet-title { color: #1a3a5c; font-family: 'Poppins', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+        #slide-9 .bullet-desc { color: #4a5568; font-size: 16px; line-height: 1.4; margin: 0; }
+        #slide-9 .callout-box { background-color: #1a3a5c; color: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 25px rgba(26, 58, 92, 0.15); position: relative; display: flex; flex-direction: column; justify-content: center; height: 100%; max-height: 450px; }
+        #slide-9 .quote-icon { font-size: 48px; color: rgba(255, 255, 255, 0.2); position: absolute; top: 30px; left: 30px; }
+        #slide-9 .callout-text { font-family: 'Poppins', sans-serif; font-size: 24px; font-weight: 600; line-height: 1.6; margin: 0; position: relative; z-index: 10; }
+        #slide-9 .callout-sub { margin-top: 25px; font-size: 16px; opacity: 0.8; font-weight: 300; border-top: 1px solid rgba(255, 255, 255, 0.3); padding-top: 20px; }
+
+        /* --- SLIDE 10 STYLES --- */
+        #slide-10 .header-bar { background-color: #1a3a5c; color: white; padding: 1.5rem 3rem; display: flex; align-items: center; height: 100px; }
+        #slide-10 .content-area { flex: 1; padding: 3rem; display: flex; gap: 3rem; }
+        #slide-10 .column-card { flex: 1; background-color: #f8fafc; border-top: 6px solid #1a3a5c; padding: 2rem; border-radius: 0 0 8px 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); display: flex; flex-direction: column; }
+        #slide-10 .column-header { font-family: 'Poppins', sans-serif; font-size: 1.75rem; font-weight: 600; color: #1a3a5c; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.75rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem; }
+        #slide-10 .list-item { display: flex; align-items: flex-start; margin-bottom: 1.25rem; font-size: 1.15rem; line-height: 1.5; color: #334155; }
+        #slide-10 .list-icon { color: #1a3a5c; margin-right: 1rem; margin-top: 0.3rem; font-size: 1rem; }
+        #slide-10 .rec-card { border-top-color: #2c7a7b; }
+        #slide-10 .rec-header { color: #285e61; }
+        #slide-10 .rec-icon { color: #2c7a7b; }
+    </style>
+</head>
+<body>
+
+    <div id="presentation-area">
+        
+        <div class="slide active" id="slide-1">
+            <div class="accent-bar"></div>
+            <div class="content-wrapper">
+                <div class="mb-12">
+                    <p class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4">Research Presentation</p>
+                    <h1 class="text-5xl font-bold mb-6">
+                        Eat’s on Tap: An RFID-Driven Solution for the Digitalization of Students' Free Meal Claiming
+                    </h1>
+                    <p class="text-2xl text-gray-600 font-light">at LVCC Inc. in Apalit, Pampanga</p>
+                </div>
+                <div class="grid grid-cols-12 gap-8 mt-auto">
+                    <div class="col-span-8 meta-info">
+                        <p class="text-xs font-bold text-gray-400 uppercase mb-2">Authors</p>
+                        <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                            Aerrol Kyle B. Santos, John Miguel U. Mañabo, Roylyn Joy E. Dicdican, Mark Joseph B. Santos,
+                            Gian Carlo Gallon, Joane Pauline Maunes, Jerreck Reynald Navalta
+                        </p>
+                    </div>
+                    <div class="col-span-4 flex flex-col justify-end items-start border-l-4 border-gray-200 pl-6">
+                        <p class="text-xs font-bold text-gray-400 uppercase mb-2">Institution</p>
+                        <p class="text-base text-gray-700 font-semibold mb-1">La Verdad Christian College</p>
+                        <p class="text-sm text-gray-500 mb-6">Apalit, Pampanga, Philippines</p>
+                        <p class="text-xs font-bold text-gray-400 uppercase mb-1">Date</p>
+                        <p class="text-sm text-gray-700 font-medium">March 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-0 right-0 w-64 h-2 bg-blue-900"></div>
+            <div class="absolute bottom-2 right-0 w-48 h-2 bg-blue-700"></div>
+        </div>
+
+        <div class="slide" id="slide-2">
+            <div class="header-bar">
+                <h1 class="header-title">Introduction &amp; Background</h1>
+            </div>
+            <div class="content-area">
+                <div class="left-col">
+                    <div class="bullet-item">
+                        <i class="fa-solid fa-graduation-cap bullet-icon"></i>
+                        <p class="bullet-text"><strong>Student Welfare Context:</strong> Nutrition significantly impacts cognitive function and academic performance; ensuring reliable access to meals is critical.</p>
+                    </div>
+                    <div class="bullet-item">
+                        <i class="fa-solid fa-utensils bullet-icon"></i>
+                        <p class="bullet-text"><strong>LVCC Program:</strong> La Verdad Christian College provides free meals to scholars, formerly managed through a manual coupon system.</p>
+                    </div>
+                    <div class="bullet-item">
+                        <i class="fa-solid fa-triangle-exclamation bullet-icon"></i>
+                        <p class="bullet-text"><strong>Operational Challenges:</strong> The manual process caused significant inefficiencies, including long queues, data errors, and high administrative workload.</p>
+                    </div>
+                    <div class="bullet-item">
+                        <i class="fa-solid fa-wifi bullet-icon"></i>
+                        <p class="bullet-text"><strong>Technological Solution:</strong> Introduction of "Eat's on Tap"—a web-based RFID system to automate eligibility verification and meal claiming.</p>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="callout-box">
+                        <div class="mb-6 text-[#1a3a5c]">
+                            <i class="fa-solid fa-quote-left text-5xl opacity-20"></i>
+                        </div>
+                        <p class="callout-text">"The transition from manual coupons to RFID represents a critical shift toward operational efficiency in student welfare services."</p>
+                        <p class="callout-sub">By digitizing the process, the institution moves from <span class="stat-highlight">reactive manual logging</span> to <span class="text-[#1a3a5c] font-bold">proactive real-time management</span>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-3">
+            <div class="header-bar">
+                <h1 class="header-title">Problem Statement</h1>
+            </div>
+            <div class="content-area">
+                <div class="card-grid">
+                    <div class="problem-card accent-red card-full">
+                        <div class="icon-circle bg-red-light"><i class="fa-regular fa-clock fa-xl"></i></div>
+                        <div>
+                            <p class="card-title">Excessive Administrative Workload</p>
+                            <p class="card-text">The PSAS Department staff dedicates approximately <strong>8 hours daily</strong> solely to physically sorting, organizing, and manually recording coupon submissions one by one.</p>
+                        </div>
+                    </div>
+                    <div class="problem-card accent-navy">
+                        <div class="icon-circle bg-navy-light"><i class="fa-solid fa-users-line fa-xl"></i></div>
+                        <div>
+                            <p class="card-title">Operational Bottlenecks</p>
+                            <p class="card-text">Manual verification creates long queues during peak meal times, reducing the time students have to eat and rest.</p>
+                        </div>
+                    </div>
+                    <div class="problem-card accent-navy">
+                        <div class="icon-circle bg-navy-light"><i class="fa-solid fa-file-invoice-dollar fa-xl"></i></div>
+                        <div>
+                            <p class="card-title">Resource Wastage</p>
+                            <p class="card-text">Recurring costs for vellum paper and laminating film, exacerbated by frequent issues of missing or misplaced physical coupons.</p>
+                        </div>
+                    </div>
+                    <div class="problem-card accent-red">
+                        <div class="icon-circle bg-red-light"><i class="fa-solid fa-user-shield fa-xl"></i></div>
+                        <div>
+                            <p class="card-title">Security &amp; Unauthorized Claims</p>
+                            <p class="card-text">Lack of effective validation mechanisms makes the system vulnerable to unauthorized meal claiming and identity misrepresentation.</p>
+                        </div>
+                    </div>
+                    <div class="problem-card accent-red">
+                        <div class="icon-circle bg-red-light"><i class="fa-solid fa-database fa-xl"></i></div>
+                        <div>
+                            <p class="card-title">Compromised Data Integrity</p>
+                            <p class="card-text">Manual record-keeping results in fragmented records and human errors, making accurate auditing and reporting nearly impossible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-4">
+            <div class="header-bar">
+                <h1 class="header-title">Research Objectives</h1>
+            </div>
+            <div class="content-area">
+                <div class="card-grid">
+                    <div class="objective-card">
+                        <div class="icon-circle"><i class="fa-solid fa-ticket fa-lg"></i></div>
+                        <div>
+                            <p class="card-title">Zero Missing Coupons</p>
+                            <p class="card-text">Digitize meal credits to completely eliminate the issue of lost, misplaced, or physically damaged coupons.</p>
+                        </div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="icon-circle"><i class="fa-solid fa-print fa-lg"></i></div>
+                        <div>
+                            <p class="card-title">Eliminate Physical Costs</p>
+                            <p class="card-text">Remove recurring expenses for vellum paper and laminating film used in the manual production of meal coupons.</p>
+                        </div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="icon-circle"><i class="fa-solid fa-user-clock fa-lg"></i></div>
+                        <div>
+                            <p class="card-title">Reduce Administrative Burden</p>
+                            <p class="card-text">Significantly cut down the 8-hour daily manual workload of PSAS Department staff for sorting and recording.</p>
+                        </div>
+                    </div>
+                    <div class="objective-card">
+                        <div class="icon-circle"><i class="fa-solid fa-user-shield fa-lg"></i></div>
+                        <div>
+                            <p class="card-title">Prevent Unauthorized Claims</p>
+                            <p class="card-text">Use RFID UID-to-account linking to enforce strict one-student-one-meal accountability and identity verification.</p>
+                        </div>
+                    </div>
+                    <div class="objective-card card-full">
+                        <div class="icon-circle"><i class="fa-solid fa-chart-line fa-lg"></i></div>
+                        <div>
+                            <p class="card-title">Centralized Real-Time Monitoring</p>
+                            <p class="card-text">Provide PSAS staff with a comprehensive live dashboard for tracking meal claims, credit balances, and usage statistics in real-time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-5">
+            <div class="header-bar">
+                <h1 class="header-title">Theoretical &amp; Technical Framework</h1>
+            </div>
+            <div class="content-area">
+                <div class="left-col">
+                    <div class="framework-card">
+                        <div class="framework-icon"><i class="fa-solid fa-wifi"></i></div>
+                        <div class="framework-content">
+                            <span class="framework-title">RFID Technology</span>
+                            <p class="framework-desc">Contactless Radio Frequency Identification enables fast, accurate, and touchless student verification at the point of service.</p>
+                        </div>
+                    </div>
+                    <div class="framework-card">
+                        <div class="framework-icon"><i class="fa-brands fa-node-js"></i></div>
+                        <div class="framework-content">
+                            <span class="framework-title">MERN Stack</span>
+                            <p class="framework-desc">Utilizes MongoDB, Express.js, React.js, and Node.js to provide a robust, scalable full-stack web development environment.</p>
+                        </div>
+                    </div>
+                    <div class="framework-card">
+                        <div class="framework-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                        <div class="framework-content">
+                            <span class="framework-title">ISO/IEC 25010</span>
+                            <p class="framework-desc">International software quality model used to strictly evaluate characteristics such as performance efficiency, security, and usability.</p>
+                        </div>
+                    </div>
+                    <div class="framework-card">
+                        <div class="framework-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                        <div class="framework-content">
+                            <span class="framework-title">Technology Acceptance Model (TAM)</span>
+                            <p class="framework-desc">A theoretical framework used to assess user acceptance by measuring Perceived Ease of Use and Perceived Utility.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="callout-box">
+                        <h3 class="callout-title">Framework Integration</h3>
+                        <p class="callout-text">
+                            This study synergizes these pillars into a cohesive solution:<br /><br />
+                            <span class="highlight">RFID</span> handles hardware-level identity verification,
+                            the <span class="highlight">MERN Stack</span> powers the web system,
+                            <span class="highlight">ISO/IEC 25010</span> sets the quality benchmarks, and
+                            <span class="highlight">TAM</span> validates user adoption.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-6">
+            <div class="header-bar">
+                <h1 class="header-title">Methodology</h1>
+            </div>
+            <div class="content-area">
+                <div class="mb-8 text-center">
+                    <h2 class="text-2xl font-bold text-gray-800" style="font-family: 'Poppins', sans-serif; color: #1a3a5c;">ATEC Workflow</h2>
+                    <p class="text-gray-500 mt-1">Operational Process for Meal Claiming</p>
+                </div>
+                <div class="process-container">
+                    <div class="process-line"></div>
+                    <div class="step-card">
+                        <div class="step-icon-wrapper"><i class="fas fa-walking step-icon"></i></div>
+                        <div class="step-number">Step 01</div>
+                        <h3 class="step-title">Arrive</h3>
+                        <p class="step-desc">Student physically approaches the meal claiming station at the canteen.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon-wrapper"><i class="fas fa-id-card step-icon"></i></div>
+                        <div class="step-number">Step 02</div>
+                        <h3 class="step-title">Tap</h3>
+                        <p class="step-desc">Student taps their registered RFID card on the reader for instant verification.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon-wrapper"><i class="fas fa-server step-icon"></i></div>
+                        <div class="step-number">Step 03</div>
+                        <h3 class="step-title">Ensure</h3>
+                        <p class="step-desc">System validates identity, eligibility, and available credit balance in real-time.</p>
+                    </div>
+                    <div class="step-card">
+                        <div class="step-icon-wrapper"><i class="fas fa-utensils step-icon"></i></div>
+                        <div class="step-number">Step 04</div>
+                        <h3 class="step-title">Claim</h3>
+                        <p class="step-desc">Meal is dispensed, credit is deducted, and the transaction is digitally logged.</p>
+                    </div>
+                </div>
+                <div class="info-section">
+                    <div class="info-box">
+                        <span class="info-title"><i class="fas fa-microscope mr-2"></i>Research Framework</span>
+                        <p class="info-text"><strong>Design:</strong> Mixed-methods Action Research <br/> <strong>Development:</strong> Agile Methodology</p>
+                    </div>
+                    <div class="info-box">
+                        <span class="info-title"><i class="fas fa-clipboard-check mr-2"></i>Evaluation &amp; Standards</span>
+                        <p class="info-text"><strong>Participants:</strong> UAT with 130 students <br/> <strong>Metrics:</strong> ISO/IEC 25010 Quality Model + TAM</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-7">
+            <div class="header-bar">
+                <h1 class="header-title">System Design &amp; Architecture</h1>
+            </div>
+            <div class="content-area">
+                <div class="left-col">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-brands fa-react"></i></div>
+                        <div class="feature-content">
+                            <p class="feature-title">MERN Stack Core</p>
+                            <p class="feature-desc">Utilizes React.js for the dynamic frontend, Node.js/Express.js for the robust API layer, and MongoDB for scalable real-time read/write data operations.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                        <div class="feature-content">
+                            <p class="feature-title">RFID Integration</p>
+                            <p class="feature-desc">Implements a "Tap-to-Verify" mechanism that instantly links each student's physical RFID card UID to their specific meal credit account.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="feature-content">
+                            <p class="feature-title">Data Integrity</p>
+                            <p class="feature-desc">Maintains immutable, auditable transaction logs that record every single tap event, ensuring 100% accountability and accurate reporting.</p>
+                        </div>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+                        <div class="feature-content">
+                            <p class="feature-title">Role-Based Access Control</p>
+                            <p class="feature-desc">Enforces strict security with distinct access levels and dashboards for PSAS administrators (monitoring) and canteen operators (service).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="architecture-box">
+                        <p class="arch-title">Data Flow Architecture</p>
+                        <div class="flow-step">
+                            <div class="step-number">1</div>
+                            <div class="flow-line"></div>
+                            <p class="step-text">Student taps RFID Card</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">2</div>
+                            <div class="flow-line"></div>
+                            <p class="step-text">Reader sends UID to System</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">3</div>
+                            <div class="flow-line"></div>
+                            <p class="step-text">Node API queries MongoDB</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">4</div>
+                            <div class="flow-line"></div>
+                            <p class="step-text">Eligibility &amp; Credit Check</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">5</div>
+                            <div class="flow-line"></div>
+                            <p class="step-text">Response on React UI</p>
+                        </div>
+                        <div class="flow-step">
+                            <div class="step-number">6</div>
+                            <p class="step-text">Credit Deducted &amp; Logged</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-8">
+            <div class="header-bar">
+                <h1 class="header-title">Results</h1>
+            </div>
+            <div class="content-area">
+                <div class="chart-container">
+                    <div style="height: 400px; width: 100%;">
+                        <canvas id="resultsChart"></canvas>
+                    </div>
+                </div>
+                <div class="metrics-container">
+                    <div class="metric-card card-1">
+                        <div class="flex justify-between items-start">
+                            <div><p class="metric-value value-1">3.85</p><p class="metric-label">Workflow Efficiency (ATEC)</p></div>
+                            <i class="fas fa-project-diagram metric-icon text-gray-300"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card card-2">
+                        <div class="flex justify-between items-start">
+                            <div><p class="metric-value value-2">3.82</p><p class="metric-label">Performance Efficiency (Time Behavior)</p></div>
+                            <i class="fas fa-tachometer-alt metric-icon text-gray-300"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card card-3">
+                        <div class="flex justify-between items-start">
+                            <div><p class="metric-value value-3">3.76</p><p class="metric-label">Operational Efficiency &amp; Security</p></div>
+                            <i class="fas fa-shield-alt metric-icon text-gray-300"></i>
+                        </div>
+                    </div>
+                    <div class="metric-card card-4">
+                        <div class="flex justify-between items-start">
+                            <div><p class="metric-value value-4">3.70</p><p class="metric-label">System Quality &amp; Ease of Use (TAM)</p></div>
+                            <i class="fas fa-thumbs-up metric-icon text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="px-16 pb-6">
+                <p class="footer-note"><i class="fas fa-info-circle mr-2"></i>n = 130 students | Rating Scale: 1–4 (4 = Strongly Agree) | Evaluation Framework: ISO/IEC 25010 + TAM</p>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-9">
+            <div class="header-bar">
+                <h1 class="header-title">Discussion</h1>
+            </div>
+            <div class="content-area">
+                <div class="left-col">
+                    <div class="bullet-card">
+                        <div class="bullet-icon-wrapper"><i class="fa-solid fa-stopwatch bullet-icon"></i></div>
+                        <div class="bullet-content">
+                            <div class="bullet-title">Low-Latency RFID Validated</div>
+                            <p class="bullet-desc">Fast contactless scanning was confirmed to reduce queue bottlenecks and waiting times significantly compared to manual logging.</p>
+                        </div>
+                    </div>
+                    <div class="bullet-card">
+                        <div class="bullet-icon-wrapper"><i class="fa-solid fa-circle-exclamation bullet-icon"></i></div>
+                        <div class="bullet-content">
+                            <div class="bullet-title">Tap-to-Verify Exception Handling</div>
+                            <p class="bullet-desc">The system clearly communicates error states (e.g., insufficient credits, unregistered UID) at the point of service without confusion.</p>
+                        </div>
+                    </div>
+                    <div class="bullet-card">
+                        <div class="bullet-icon-wrapper"><i class="fa-solid fa-link bullet-icon"></i></div>
+                        <div class="bullet-content">
+                            <div class="bullet-title">One-to-One UID Linking</div>
+                            <p class="bullet-desc">Each RFID card is uniquely bound to a student account, enforcing strict accountability and preventing unauthorized meal claims.</p>
+                        </div>
+                    </div>
+                    <div class="bullet-card">
+                        <div class="bullet-icon-wrapper"><i class="fa-solid fa-clipboard-check bullet-icon"></i></div>
+                        <div class="bullet-content">
+                            <div class="bullet-title">Framework Alignment</div>
+                            <p class="bullet-desc">Findings are consistent with both ISO/IEC 25010 quality benchmarks (performance) and TAM adoption constructs (ease of use).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="right-col">
+                    <div class="callout-box">
+                        <i class="fa-solid fa-quote-left quote-icon"></i>
+                        <p class="callout-text">"The results confirm that RFID-based automation is not just technically viable, but operationally practical for institutional welfare programs."</p>
+                        <p class="callout-sub">
+                            <i class="fa-solid fa-check-circle mr-2"></i> Strong Student Acceptance<br />
+                            <i class="fa-solid fa-check-circle mr-2"></i> Measurable Administrative Gains
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide" id="slide-10">
+            <div class="header-bar">
+                <h1 class="text-4xl font-bold font-poppins tracking-tight">Conclusion &amp; Recommendations</h1>
+            </div>
+            <div class="content-area">
+                <div class="column-card">
+                    <div class="column-header">
+                        <i class="fas fa-check-circle"></i><h2>Conclusion</h2>
+                    </div>
+                    <div>
+                        <div class="list-item"><i class="fas fa-chevron-right list-icon"></i><p><strong>Technically Superior:</strong> "Eat's on Tap" provides a robust, contactless alternative to the manual coupon distribution method.</p></div>
+                        <div class="list-item"><i class="fas fa-chevron-right list-icon"></i><p><strong>Objectives Met:</strong> Achieved zero missing coupons, eliminated physical paper costs, and significantly reduced administrative burden.</p></div>
+                        <div class="list-item"><i class="fas fa-chevron-right list-icon"></i><p><strong>Standard Compliance:</strong> System architecture and performance align with ISO/IEC 25010 quality standards and TAM acceptance model.</p></div>
+                        <div class="list-item"><i class="fas fa-chevron-right list-icon"></i><p><strong>High User Approval:</strong> Validated by a UAT composite mean of 3.70 (Strongly Agree), confirming system quality and ease of use.</p></div>
+                    </div>
+                </div>
+                <div class="column-card rec-card">
+                    <div class="column-header rec-header">
+                        <i class="fas fa-lightbulb"></i><h2>Recommendations</h2>
+                    </div>
+                    <div>
+                        <div class="list-item"><i class="fas fa-arrow-right rec-icon"></i><p><strong>Phased Rollout:</strong> Implement a gradual campus-wide deployment accompanied by comprehensive staff training sessions.</p></div>
+                        <div class="list-item"><i class="fas fa-arrow-right rec-icon"></i><p><strong>Continuous Monitoring:</strong> Establish protocols for ongoing monitoring of system performance, security, and data integrity.</p></div>
+                        <div class="list-item"><i class="fas fa-arrow-right rec-icon"></i><p><strong>Periodic Reviews:</strong> Conduct regular usability reviews and system audits to identify areas for iterative improvement.</p></div>
+                        <div class="list-item"><i class="fas fa-arrow-right rec-icon"></i><p><strong>Advanced Analytics:</strong> Integrate deeper analytics and reporting features to assist the PSAS Department in resource planning.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute bottom-6 right-8 text-gray-400 font-inter text-sm"><p>10</p></div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Full Screen Scaling Logic ---
+        function resizePresentation() {
+            const area = document.getElementById('presentation-area');
+            // Calculate scale based on the window size to maintain 1280x720 aspect ratio perfectly
+            const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+            area.style.transform = `scale(${scale})`;
+        }
+        window.addEventListener('resize', resizePresentation);
+        resizePresentation(); // Initialize size
+
+        // --- Keyboard Navigation Logic ---
+        let currentIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide() {
+            slides.forEach((slide, index) => {
+                if (index === currentIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            // Forward (Right Arrow or Space)
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateSlide();
+                }
+            } 
+            // Backward (Left Arrow)
+            else if (e.key === 'ArrowLeft') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlide();
+                }
+            }
+        });
+
+        // --- Chart.js Initialization (Slide 8) ---
+        // Initializing the chart globally so it renders once the page loads
+        const ctx = document.getElementById('resultsChart').getContext('2d');
+        const resultsChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Workflow Efficiency (ATEC)',
+                    'Performance Efficiency (Time Behavior)',
+                    'Operational Efficiency & Security',
+                    'System Quality & Ease of Use (TAM)'
+                ],
+                datasets: [{
+                    label: 'Mean Score (Scale 1-4)',
+                    data: [3.85, 3.82, 3.76, 3.70],
+                    backgroundColor: ['#1a3a5c', '#2c5282', '#3182ce', '#63b3ed'],
+                    borderColor: 'rgba(255, 255, 255, 0)',
+                    borderWidth: 1,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.8
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'User Acceptance Testing (UAT) Scores',
+                        font: { family: 'Poppins', size: 20, weight: '600' },
+                        color: '#1a3a5c',
+                        padding: { bottom: 20 },
+                        align: 'start'
+                    },
+                    tooltip: {
+                        backgroundColor: '#1a3a5c',
+                        titleFont: { family: 'Inter', size: 14 },
+                        bodyFont: { family: 'Inter', size: 14 },
+                        padding: 10,
+                        cornerRadius: 4
+                    }
+                },
+                scales: {
+                    x: {
+                        min: 3.0,
+                        max: 4.0,
+                        grid: { color: '#f1f5f9', drawBorder: false },
+                        ticks: { font: { family: 'Inter', size: 12 }, color: '#64748b' },
+                        title: { display: true, text: 'Mean Score (4.0 = Strongly Agree)', color: '#94a3b8', font: { family: 'Inter', size: 12 } }
+                    },
+                    y: {
+                        grid: { display: false, drawBorder: false },
+                        ticks: { font: { family: 'Inter', size: 13, weight: '500' }, color: '#334155', autoSkip: false }
+                    }
+                },
+                animation: { duration: 1500, easing: 'easeOutQuart' }
+            }
+        });
+    </script>
+</body>
+</html>
