@@ -20,7 +20,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #1a1a1a; /* Dark background outside the presentation */
+            background-color: #1a1a1a;
             font-family: 'Inter', sans-serif;
             display: flex;
             justify-content: center;
@@ -203,6 +203,12 @@
         #slide-10 .rec-card { border-top-color: #2c7a7b; }
         #slide-10 .rec-header { color: #285e61; }
         #slide-10 .rec-icon { color: #2c7a7b; }
+
+        /* --- SLIDE 11 STYLES (NEW) --- */
+        #slide-11 .content-area { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background-color: #f8fafc; }
+        #slide-11 .thank-you-text { font-family: 'Poppins', sans-serif; font-size: 5rem; font-weight: 700; color: #1a3a5c; margin-bottom: 1rem; }
+        #slide-11 .sub-text { font-family: 'Inter', sans-serif; font-size: 1.5rem; color: #4b5563; }
+        #slide-11 .divider { width: 100px; height: 6px; background-color: #d9534f; margin-top: 2rem; border-radius: 4px; }
     </style>
 </head>
 <body>
@@ -216,7 +222,7 @@
                     <div class="flex">
                         <img src="./PSITE logo.png" alt="PSITE_Logo.png" class="w-40 h-auto mb-4">
                         <div class="h-auto flex items-end">
-                            <p class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4">Conference Presentation</p>
+                            <p class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4 ml-4">Conference Presentation</p>
                         </div>
                     </div>
                     <h1 class="text-5xl font-bold mb-6">
@@ -662,18 +668,26 @@
             <div class="absolute bottom-6 right-8 text-gray-400 font-inter text-sm"><p>10</p></div>
         </div>
 
+        <div class="slide" id="slide-11">
+            <div class="content-area">
+                <i class="fa-solid fa-hands-clapping text-6xl text-[#1a3a5c] mb-6"></i>
+                <h1 class="thank-you-text">Thank You!</h1>
+                <p class="sub-text">We are now open for questions.</p>
+                <div class="divider"></div>
+            </div>
+        </div>
+
     </div>
 
     <script>
         // --- Full Screen Scaling Logic ---
         function resizePresentation() {
             const area = document.getElementById('presentation-area');
-            // Calculate scale based on the window size to maintain 1280x720 aspect ratio perfectly
             const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
             area.style.transform = `scale(${scale})`;
         }
         window.addEventListener('resize', resizePresentation);
-        resizePresentation(); // Initialize size
+        resizePresentation(); 
 
         // --- Keyboard Navigation Logic ---
         let currentIndex = 0;
@@ -707,7 +721,6 @@
         });
 
         // --- Chart.js Initialization (Slide 8) ---
-        // Initializing the chart globally so it renders once the page loads
         const ctx = document.getElementById('resultsChart').getContext('2d');
         const resultsChart = new Chart(ctx, {
             type: 'bar',
