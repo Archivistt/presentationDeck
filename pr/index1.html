@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Eat's on Tap Presentation</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Poppins:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .accent-bar {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 24px;
+            background-color: #1a3a5c;
+            /* Navy Blue */
+        }
+
+        .content-wrapper {
+            flex: 1;
+            padding: 60px 80px 60px 104px;
+            /* Left padding accounts for accent bar */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            color: #1a3a5c;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-family: 'Inter', sans-serif;
+            color: #4b5563;
+        }
+
+        .meta-info {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Left Accent Bar -->
+        <div class="accent-bar"></div>
+        <!-- Main Content -->
+        <div class="content-wrapper">
+            <!-- Header Section -->
+            <div class="mb-12">
+                <p class="text-sm font-bold tracking-widest text-gray-500 uppercase mb-4">Research Presentation</p>
+                <h1 class="text-5xl font-bold mb-6">
+                    Eat’s on Tap: An RFID-Driven Solution for the Digitalization of Students' Free Meal Claiming
+                </h1>
+                <p class="text-2xl text-gray-600 font-light">
+                    at LVCC Inc. in Apalit, Pampanga
+                </p>
+            </div>
+            <!-- Authors & Affiliation -->
+            <div class="grid grid-cols-12 gap-8 mt-auto">
+                <div class="col-span-8 meta-info">
+                    <p class="text-xs font-bold text-gray-400 uppercase mb-2">Authors</p>
+                    <p class="text-lg text-gray-800 font-medium leading-relaxed">
+                        Aerrol Kyle B. Santos, John Miguel U. Mañabo, Roylyn Joy E. Dicdican, Mark Joseph B. Santos,
+                        Gian Carlo Gallon, Joane Pauline Maunes, Jerreck Reynald Navalta
+                    </p>
+                </div>
+                <div class="col-span-4 flex flex-col justify-end items-start border-l-4 border-gray-200 pl-6">
+                    <p class="text-xs font-bold text-gray-400 uppercase mb-2">Institution</p>
+                    <p class="text-base text-gray-700 font-semibold mb-1">
+                        La Verdad Christian College
+                    </p>
+                    <p class="text-sm text-gray-500 mb-6">
+                        Apalit, Pampanga, Philippines
+                    </p>
+                    <p class="text-xs font-bold text-gray-400 uppercase mb-1">Date</p>
+                    <p class="text-sm text-gray-700 font-medium">
+                        March 2026
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Decorative Element (Bottom Right) -->
+        <div class="absolute bottom-0 right-0 w-64 h-2 bg-blue-900"></div>
+        <div class="absolute bottom-2 right-0 w-48 h-2 bg-blue-700"></div>
+    </div>
+</body>
+
+</html>

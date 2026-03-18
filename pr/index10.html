@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=1280, height=720, initial-scale=1.0" name="viewport" />
+    <title>Conclusion &amp; Recommendations</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            overflow: hidden;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            color: white;
+            padding: 1.5rem 3rem;
+            display: flex;
+            align-items: center;
+            height: 100px;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 3rem;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .column-card {
+            flex: 1;
+            background-color: #f8fafc;
+            border-top: 6px solid #1a3a5c;
+            padding: 2rem;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .column-header {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #1a3a5c;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+            font-size: 1.15rem;
+            line-height: 1.5;
+            color: #334155;
+        }
+
+        .list-icon {
+            color: #1a3a5c;
+            margin-right: 1rem;
+            margin-top: 0.3rem;
+            font-size: 1rem;
+        }
+
+        .rec-card {
+            border-top-color: #2c7a7b;
+            /* Teal accent for recommendations to differentiate */
+        }
+
+        .rec-header {
+            color: #285e61;
+        }
+
+        .rec-icon {
+            color: #2c7a7b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="text-4xl font-bold font-poppins tracking-tight">Conclusion &amp; Recommendations</h1>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Left Column: Conclusion -->
+            <div class="column-card">
+                <div class="column-header">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Conclusion</h2>
+                </div>
+                <div>
+                    <div class="list-item">
+                        <i class="fas fa-chevron-right list-icon"></i>
+                        <p><strong>Technically Superior:</strong> "Eat's on Tap" provides a robust, contactless
+                            alternative to the manual coupon distribution method.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-chevron-right list-icon"></i>
+                        <p><strong>Objectives Met:</strong> Achieved zero missing coupons, eliminated physical paper
+                            costs, and significantly reduced administrative burden.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-chevron-right list-icon"></i>
+                        <p><strong>Standard Compliance:</strong> System architecture and performance align with ISO/IEC
+                            25010 quality standards and TAM acceptance model.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-chevron-right list-icon"></i>
+                        <p><strong>High User Approval:</strong> Validated by a UAT composite mean of 3.70 (Strongly
+                            Agree), confirming system quality and ease of use.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Recommendations -->
+            <div class="column-card rec-card">
+                <div class="column-header rec-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h2>Recommendations</h2>
+                </div>
+                <div>
+                    <div class="list-item">
+                        <i class="fas fa-arrow-right rec-icon"></i>
+                        <p><strong>Phased Rollout:</strong> Implement a gradual campus-wide deployment accompanied by
+                            comprehensive staff training sessions.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-arrow-right rec-icon"></i>
+                        <p><strong>Continuous Monitoring:</strong> Establish protocols for ongoing monitoring of system
+                            performance, security, and data integrity.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-arrow-right rec-icon"></i>
+                        <p><strong>Periodic Reviews:</strong> Conduct regular usability reviews and system audits to
+                            identify areas for iterative improvement.</p>
+                    </div>
+                    <div class="list-item">
+                        <i class="fas fa-arrow-right rec-icon"></i>
+                        <p><strong>Advanced Analytics:</strong> Integrate deeper analytics and reporting features to
+                            assist the PSAS Department in resource planning.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer/Page Number -->
+        <div class="absolute bottom-6 right-8 text-gray-400 font-inter text-sm">
+            <p>10</p>
+        </div>
+    </div>
+</body>
+
+</html>

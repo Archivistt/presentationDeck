@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>System Design &amp; Architecture</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            gap: 50px;
+        }
+
+        .left-col {
+            flex: 1.3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .right-col {
+            flex: 0.9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: flex-start;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8fafc;
+            border-left: 5px solid #1a3a5c;
+        }
+
+        .feature-icon {
+            color: #1a3a5c;
+            font-size: 20px;
+            margin-right: 15px;
+            margin-top: 3px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .feature-content {
+            flex: 1;
+        }
+
+        .feature-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #1a3a5c;
+            font-size: 18px;
+            margin-bottom: 4px;
+        }
+
+        .feature-desc {
+            color: #4b5563;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .architecture-box {
+            background-color: #f0f4f8;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .arch-title {
+            color: #1a3a5c;
+            font-family: 'Poppins', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 2px solid #cbd5e1;
+            padding-bottom: 10px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .flow-step:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background-color: #1a3a5c;
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+            margin-right: 15px;
+            z-index: 2;
+        }
+
+        .step-text {
+            font-size: 16px;
+            color: #334155;
+            font-weight: 500;
+        }
+
+        .flow-line {
+            position: absolute;
+            left: 14px;
+            top: 28px;
+            bottom: -15px;
+            width: 2px;
+            background-color: #cbd5e1;
+            z-index: 1;
+        }
+
+        .flow-step:last-child .flow-line {
+            display: none;
+        }
+
+        p {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="header-title">System Design &amp; Architecture</h1>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Left Column: Core Components -->
+            <div class="left-col">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-brands fa-react"></i></div>
+                    <div class="feature-content">
+                        <p class="feature-title">MERN Stack Core</p>
+                        <p class="feature-desc">Utilizes React.js for the dynamic frontend, Node.js/Express.js for the
+                            robust API layer, and MongoDB for scalable real-time read/write data operations.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-id-card-clip"></i></div>
+                    <div class="feature-content">
+                        <p class="feature-title">RFID Integration</p>
+                        <p class="feature-desc">Implements a "Tap-to-Verify" mechanism that instantly links each
+                            student's physical RFID card UID to their specific meal credit account.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <div class="feature-content">
+                        <p class="feature-title">Data Integrity</p>
+                        <p class="feature-desc">Maintains immutable, auditable transaction logs that record every single
+                            tap event, ensuring 100% accountability and accurate reporting.</p>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-users-gear"></i></div>
+                    <div class="feature-content">
+                        <p class="feature-title">Role-Based Access Control</p>
+                        <p class="feature-desc">Enforces strict security with distinct access levels and dashboards for
+                            PSAS administrators (monitoring) and canteen operators (service).</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Architecture Flow -->
+            <div class="right-col">
+                <div class="architecture-box">
+                    <p class="arch-title">Data Flow Architecture</p>
+                    <div class="flow-step">
+                        <div class="step-number">1</div>
+                        <div class="flow-line"></div>
+                        <p class="step-text">Student taps RFID Card</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">2</div>
+                        <div class="flow-line"></div>
+                        <p class="step-text">Reader sends UID to System</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">3</div>
+                        <div class="flow-line"></div>
+                        <p class="step-text">Node API queries MongoDB</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">4</div>
+                        <div class="flow-line"></div>
+                        <p class="step-text">Eligibility &amp; Credit Check</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">5</div>
+                        <div class="flow-line"></div>
+                        <p class="step-text">Response on React UI</p>
+                    </div>
+                    <div class="flow-step">
+                        <div class="step-number">6</div>
+                        <p class="step-text">Credit Deducted &amp; Logged</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

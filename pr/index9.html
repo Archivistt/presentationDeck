@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Discussion</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            flex-shrink: 0;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            gap: 50px;
+            overflow: hidden;
+        }
+
+        .left-col {
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .right-col {
+            flex: 0.9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Enhanced Bullet Cards */
+        .bullet-card {
+            display: flex;
+            align-items: flex-start;
+            background-color: #f8fafc;
+            border-left: 5px solid #1a3a5c;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .bullet-card:last-child {
+            margin-bottom: 0;
+        }
+
+        .bullet-icon-wrapper {
+            background-color: #e6eef5;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .bullet-icon {
+            color: #1a3a5c;
+            font-size: 20px;
+        }
+
+        .bullet-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bullet-title {
+            color: #1a3a5c;
+            font-family: 'Poppins', sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .bullet-desc {
+            color: #4a5568;
+            font-size: 16px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        /* Right Column Callout */
+        .callout-box {
+            background-color: #1a3a5c;
+            color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(26, 58, 92, 0.15);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+            max-height: 450px;
+        }
+
+        .quote-icon {
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.2);
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .callout-text {
+            font-family: 'Poppins', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            line-height: 1.6;
+            margin: 0;
+            position: relative;
+            z-index: 10;
+        }
+
+        .callout-sub {
+            margin-top: 25px;
+            font-size: 16px;
+            opacity: 0.8;
+            font-weight: 300;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="header-title">Discussion</h1>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Left Column: Bullet Cards -->
+            <div class="left-col">
+                <!-- Card 1 -->
+                <div class="bullet-card">
+                    <div class="bullet-icon-wrapper">
+                        <i class="fa-solid fa-stopwatch bullet-icon"></i>
+                    </div>
+                    <div class="bullet-content">
+                        <div class="bullet-title">Low-Latency RFID Validated</div>
+                        <p class="bullet-desc">
+                            Fast contactless scanning was confirmed to reduce queue bottlenecks and waiting times
+                            significantly compared to manual logging.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bullet-card">
+                    <div class="bullet-icon-wrapper">
+                        <i class="fa-solid fa-circle-exclamation bullet-icon"></i>
+                    </div>
+                    <div class="bullet-content">
+                        <div class="bullet-title">Tap-to-Verify Exception Handling</div>
+                        <p class="bullet-desc">
+                            The system clearly communicates error states (e.g., insufficient credits, unregistered UID)
+                            at the point of service without confusion.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bullet-card">
+                    <div class="bullet-icon-wrapper">
+                        <i class="fa-solid fa-link bullet-icon"></i>
+                    </div>
+                    <div class="bullet-content">
+                        <div class="bullet-title">One-to-One UID Linking</div>
+                        <p class="bullet-desc">
+                            Each RFID card is uniquely bound to a student account, enforcing strict accountability and
+                            preventing unauthorized meal claims.
+                        </p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bullet-card">
+                    <div class="bullet-icon-wrapper">
+                        <i class="fa-solid fa-clipboard-check bullet-icon"></i>
+                    </div>
+                    <div class="bullet-content">
+                        <div class="bullet-title">Framework Alignment</div>
+                        <p class="bullet-desc">
+                            Findings are consistent with both ISO/IEC 25010 quality benchmarks (performance) and TAM
+                            adoption constructs (ease of use).
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Highlighted Callout -->
+            <div class="right-col">
+                <div class="callout-box">
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p class="callout-text">
+                        "The results confirm that RFID-based automation is not just technically viable, but
+                        operationally practical for institutional welfare programs."
+                    </p>
+                    <p class="callout-sub">
+                        <i class="fa-solid fa-check-circle mr-2"></i> Strong Student Acceptance<br />
+                        <i class="fa-solid fa-check-circle mr-2"></i> Measurable Administrative Gains
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

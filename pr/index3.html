@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Problem Statement</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Poppins:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23f3f4f6" fill-opacity="0.4"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            height: 100%;
+        }
+
+        .problem-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.2s ease;
+            border: 1px solid #f3f4f6;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .accent-red {
+            border-left: 6px solid #d9534f;
+            /* Muted Red for critical issues */
+        }
+
+        .accent-navy {
+            border-left: 6px solid #1a3a5c;
+            /* Navy for structural/process issues */
+        }
+
+        .icon-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 20px;
+        }
+
+        .bg-red-light {
+            background-color: #fcebea;
+            color: #d9534f;
+        }
+
+        .bg-navy-light {
+            background-color: #e8eaf0;
+            color: #1a3a5c;
+        }
+
+        .card-title {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 20px;
+            color: #1f2937;
+            margin-bottom: 6px;
+        }
+
+        .card-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            color: #4b5563;
+            line-height: 1.5;
+        }
+
+        /* Custom layout for the 5th item to span or center if needed, 
+           but 2 columns means one empty spot. We can make the last one full width or just flow.
+           Let's make the first one (Main workload) full width or the last one full width.
+           Let's make the "Workload" one prominent.
+        */
+        .card-full {
+            grid-column: span 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="header-title">Problem Statement</h1>
+        </div>
+        <!-- Main Content Grid -->
+        <div class="content-area">
+            <div class="card-grid">
+                <!-- Problem 1: Workload (Spans full width for emphasis) -->
+                <div class="problem-card accent-red card-full">
+                    <div class="icon-circle bg-red-light">
+                        <i class="fa-regular fa-clock fa-xl"></i>
+                    </div>
+                    <div>
+                        <p class="card-title">Excessive Administrative Workload</p>
+                        <p class="card-text">
+                            The PSAS Department staff dedicates approximately <strong>8 hours daily</strong> solely to
+                            physically sorting, organizing, and manually recording coupon submissions one by one.
+                        </p>
+                    </div>
+                </div>
+                <!-- Problem 2: Queues -->
+                <div class="problem-card accent-navy">
+                    <div class="icon-circle bg-navy-light">
+                        <i class="fa-solid fa-users-line fa-xl"></i>
+                    </div>
+                    <div>
+                        <p class="card-title">Operational Bottlenecks</p>
+                        <p class="card-text">
+                            Manual verification creates long queues during peak meal times, reducing the time students
+                            have to eat and rest.
+                        </p>
+                    </div>
+                </div>
+                <!-- Problem 3: Material Costs -->
+                <div class="problem-card accent-navy">
+                    <div class="icon-circle bg-navy-light">
+                        <i class="fa-solid fa-file-invoice-dollar fa-xl"></i>
+                    </div>
+                    <div>
+                        <p class="card-title">Resource Wastage</p>
+                        <p class="card-text">
+                            Recurring costs for vellum paper and laminating film, exacerbated by frequent issues of
+                            missing or misplaced physical coupons.
+                        </p>
+                    </div>
+                </div>
+                <!-- Problem 4: Security -->
+                <div class="problem-card accent-red">
+                    <div class="icon-circle bg-red-light">
+                        <i class="fa-solid fa-user-shield fa-xl"></i>
+                    </div>
+                    <div>
+                        <p class="card-title">Security &amp; Unauthorized Claims</p>
+                        <p class="card-text">
+                            Lack of effective validation mechanisms makes the system vulnerable to unauthorized meal
+                            claiming and identity misrepresentation.
+                        </p>
+                    </div>
+                </div>
+                <!-- Problem 5: Data Integrity -->
+                <div class="problem-card accent-red">
+                    <div class="icon-circle bg-red-light">
+                        <i class="fa-solid fa-database fa-xl"></i>
+                    </div>
+                    <div>
+                        <p class="card-title">Compromised Data Integrity</p>
+                        <p class="card-text">
+                            Manual record-keeping results in fragmented records and human errors, making accurate
+                            auditing and reporting nearly impossible.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

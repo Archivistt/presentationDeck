@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Introduction &amp; Background</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Poppins:wght@500;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 60px;
+            display: flex;
+            gap: 60px;
+        }
+
+        .left-col {
+            flex: 1.4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right-col {
+            flex: 0.8;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bullet-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 28px;
+        }
+
+        .bullet-icon {
+            color: #1a3a5c;
+            font-size: 24px;
+            margin-right: 20px;
+            margin-top: 4px;
+        }
+
+        .bullet-text {
+            color: #333333;
+            font-size: 24px;
+            line-height: 1.5;
+        }
+
+        .callout-box {
+            background-color: #f0f4f8;
+            border-left: 8px solid #1a3a5c;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .callout-text {
+            color: #1a3a5c;
+            font-size: 26px;
+            font-weight: 600;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .callout-sub {
+            color: #555555;
+            font-size: 20px;
+            line-height: 1.4;
+        }
+
+        .stat-highlight {
+            font-weight: 700;
+            color: #d9534f;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="header-title">Introduction &amp; Background</h1>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Left Column: Context Bullets -->
+            <div class="left-col">
+                <div class="bullet-item">
+                    <i class="fa-solid fa-graduation-cap bullet-icon"></i>
+                    <p class="bullet-text">
+                        <strong>Student Welfare Context:</strong> Nutrition significantly impacts cognitive function and
+                        academic performance; ensuring reliable access to meals is critical.
+                    </p>
+                </div>
+                <div class="bullet-item">
+                    <i class="fa-solid fa-utensils bullet-icon"></i>
+                    <p class="bullet-text">
+                        <strong>LVCC Program:</strong> La Verdad Christian College provides free meals to scholars,
+                        formerly managed through a manual coupon system.
+                    </p>
+                </div>
+                <div class="bullet-item">
+                    <i class="fa-solid fa-triangle-exclamation bullet-icon"></i>
+                    <p class="bullet-text">
+                        <strong>Operational Challenges:</strong> The manual process caused significant inefficiencies,
+                        including long queues, data errors, and high administrative workload.
+                    </p>
+                </div>
+                <div class="bullet-item">
+                    <i class="fa-solid fa-wifi bullet-icon"></i>
+                    <p class="bullet-text">
+                        <strong>Technological Solution:</strong> Introduction of "Eat's on Tap"—a web-based RFID system
+                        to automate eligibility verification and meal claiming.
+                    </p>
+                </div>
+            </div>
+            <!-- Right Column: Callout Box -->
+            <div class="right-col">
+                <div class="callout-box">
+                    <div class="mb-6 text-[#1a3a5c]">
+                        <i class="fa-solid fa-quote-left text-5xl opacity-20"></i>
+                    </div>
+                    <p class="callout-text">
+                        "The transition from manual coupons to RFID represents a critical shift toward operational
+                        efficiency in student welfare services."
+                    </p>
+                    <p class="callout-sub">
+                        By digitizing the process, the institution moves from <span class="stat-highlight">reactive
+                            manual logging</span> to <span class="text-[#1a3a5c] font-bold">proactive real-time
+                            management</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

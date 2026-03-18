@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Theoretical &amp; Technical Framework</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Poppins:wght@500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 1280px;
+            height: 720px;
+            background-color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow: hidden;
+        }
+
+        .slide-container {
+            width: 1280px;
+            height: 720px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-bar {
+            background-color: #1a3a5c;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+        }
+
+        .header-title {
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .content-area {
+            flex: 1;
+            padding: 50px 60px;
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        .left-col {
+            flex: 1.3;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .right-col {
+            flex: 0.9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .framework-card {
+            background-color: #f8fafc;
+            border-left: 6px solid #1a3a5c;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            transition: transform 0.2s ease;
+        }
+
+        .framework-icon {
+            color: #1a3a5c;
+            font-size: 24px;
+            margin-right: 16px;
+            margin-top: 4px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .framework-content {
+            flex: 1;
+        }
+
+        .framework-title {
+            color: #1a3a5c;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .framework-desc {
+            color: #4b5563;
+            font-size: 16px;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .callout-box {
+            background-color: #f0f4f8;
+            border-top: 8px solid #1a3a5c;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .callout-title {
+            color: #1a3a5c;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+        }
+
+        .callout-text {
+            color: #333333;
+            font-size: 20px;
+            line-height: 1.6;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .highlight {
+            color: #1a3a5c;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="slide-container">
+        <!-- Header -->
+        <div class="header-bar">
+            <h1 class="header-title">Theoretical &amp; Technical Framework</h1>
+        </div>
+        <!-- Main Content -->
+        <div class="content-area">
+            <!-- Left Column: Framework Pillars -->
+            <div class="left-col">
+                <!-- Card 1: RFID -->
+                <div class="framework-card">
+                    <div class="framework-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <div class="framework-content">
+                        <span class="framework-title">RFID Technology</span>
+                        <p class="framework-desc">Contactless Radio Frequency Identification enables fast, accurate, and
+                            touchless student verification at the point of service.</p>
+                    </div>
+                </div>
+                <!-- Card 2: MERN Stack -->
+                <div class="framework-card">
+                    <div class="framework-icon"><i class="fa-brands fa-node-js"></i></div>
+                    <div class="framework-content">
+                        <span class="framework-title">MERN Stack</span>
+                        <p class="framework-desc">Utilizes MongoDB, Express.js, React.js, and Node.js to provide a
+                            robust, scalable full-stack web development environment.</p>
+                    </div>
+                </div>
+                <!-- Card 3: ISO/IEC 25010 -->
+                <div class="framework-card">
+                    <div class="framework-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <div class="framework-content">
+                        <span class="framework-title">ISO/IEC 25010</span>
+                        <p class="framework-desc">International software quality model used to strictly evaluate
+                            characteristics such as performance efficiency, security, and usability.</p>
+                    </div>
+                </div>
+                <!-- Card 4: TAM -->
+                <div class="framework-card">
+                    <div class="framework-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                    <div class="framework-content">
+                        <span class="framework-title">Technology Acceptance Model (TAM)</span>
+                        <p class="framework-desc">A theoretical framework used to assess user acceptance by measuring
+                            Perceived Ease of Use and Perceived Utility.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Column: Integration Summary -->
+            <div class="right-col">
+                <div class="callout-box">
+                    <h3 class="callout-title">Framework Integration</h3>
+                    <p class="callout-text">
+                        This study synergizes these pillars into a cohesive solution:
+                        <br /><br />
+                        <span class="highlight">RFID</span> handles hardware-level identity verification,
+                        the <span class="highlight">MERN Stack</span> powers the web system,
+                        <span class="highlight">ISO/IEC 25010</span> sets the quality benchmarks, and
+                        <span class="highlight">TAM</span> validates user adoption.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
